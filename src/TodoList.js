@@ -8,18 +8,21 @@ export default function TodoList() {
     { id: 4, text: 'リストの絞り込みを実装', completed: false },
     { id: 5, text: 'ソート機能を追加', completed: true }
   ]);
-  // TODO(human): フィルター用の状態を追加してください
-  // ヒント: const [filter, setFilter] = useState('all');
-  // filterの値は 'all', 'completed', 'active' のいずれかになります
-  const [filter, setFilter] = useState('all')
+  const [filter, setFilter] = useState('all');
+  const [sortBy, setSortBy] = useState('none');
 
-  // TODO(human): 絞り込み処理を実装してください
-  // ヒント: filteredTodos という変数を作成し、filter の値に応じて todos を絞り込みます
-  // filter が 'all' なら全て、'completed' なら completed: true、'active' なら completed: false
-  // 例: const filteredTodos = todos.filter((todo) => { 条件 });
+  // 絞り込み処理
   const filteredTodos = todos.filter((todo) => {
     return filter === 'all' || filter === 'completed' && todo.completed || filter === 'active' && !todo.completed
-  })
+  });
+
+  // ソート処理
+  const sortedTodos = [...filteredTodos].sort((a, b) => {
+    if(sortBy==='text-asc') return a.text.localeCompare(b.text)
+    if(sortBy==='text-desc') return b.text.localeCompare(a.text)
+    if(sortBy==='completed') return b.completed - a.completed
+    return 0
+  });
 
   return (
     <div>
@@ -32,10 +35,17 @@ export default function TodoList() {
         <button onClick={() => setFilter('completed')}>完了済み</button>
       </div>
 
+      {/* ソートボタン */}
+      <div>
+        <button onClick={() => setSortBy('none')}>ソートなし</button>
+        <button onClick={() => setSortBy('text-asc')}>名前順（昇順）</button>
+        <button onClick={() => setSortBy('text-desc')}>名前順（降順）</button>
+        <button onClick={() => setSortBy('completed')}>完了状態順</button>
+      </div>
+
       <ul>
-        {/* TODO(human): todos の代わりに filteredTodos を使ってください */}
         {
-          filteredTodos.map((todo) =>{
+          sortedTodos.map((todo) =>{
             return <li key={todo.id}>{todo.text}</li>
           })
         }
