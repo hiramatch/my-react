@@ -1,11 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
-import TodoList from './TodoList';
+import AgeChecker from './AgeChecker';
 
 function App() {
   return (
     <div>
-      <TodoList />
+      <AgeChecker />
     </div>
   );
 }
