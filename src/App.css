@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+/* 年齢区分ごとのスタイル */
+.child {
+  color: blue;
+  font-size: 15px;
+}
+
+.teen {
+  color: orange;
+  font-size: 17px;
+}
+
+.adult {
+  color: green;
+  font-size: 20px;  
+}
