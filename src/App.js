@@ -1,11 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
-import EventPropagation from './EventPropagation';
+import SimpleForm from './SimpleForm';
 
 function App() {
   return (
     <div>
-      <EventPropagation />
+      <SimpleForm />
     </div>
   );
 }
