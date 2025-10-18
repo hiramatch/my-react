@@ -1,11 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
-import EventDemo from './EventDemo';
+import EventPropagation from './EventPropagation';
 
 function App() {
   return (
     <div>
-      <EventDemo />
+      <EventPropagation />
     </div>
   );
 }
