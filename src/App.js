@@ -1,11 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
-import SimpleForm from './SimpleForm';
+import RegistrationForm from './RegistrationForm';
 
 function App() {
   return (
     <div>
-      <SimpleForm />
+     <RegistrationForm /> 
     </div>
   );
 }
