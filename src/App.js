@@ -1,13 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
-import MemoDemo from './MemoDemo';
+import { ThemeProvider } from './ThemeContext';
+import ThemeToggle from './ThemeToggle';
+import ThemedComponent from './ThemedComponent';
 
 
 function App() {
   return (
-    <div>
-      <MemoDemo />
-    </div>
+    <ThemeProvider>
+      <div>
+        <h1>Context API デモ</h1>
+        <ThemeToggle />
+        <ThemedComponent />
+        <ThemedComponent />
+      </div>
+    </ThemeProvider>
   );
 }
 
