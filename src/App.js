@@ -1,12 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
-import RegistrationForm from './RegistrationForm';
-import TodoList from './TodoList';
+import RefDemo from './RefDemo';
+
 
 function App() {
   return (
     <div>
-      <TodoList />
+      <RefDemo />
     </div>
   );
 }
