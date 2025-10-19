@@ -1,18 +1,22 @@
 import './App.css';
-import { ThemeProvider } from './ThemeContext';
+import { UserProvider } from './UserContext';
 import ThemeToggle from './ThemeToggle';
 import ThemedComponent from './ThemedComponent';
+import UserProfile from './UserProfile';
+import { ThemeProvider } from './ThemeContext';
 
 
 function App() {
   return (
     <ThemeProvider>
-      <div>
-        <h1>Context API デモ</h1>
-        <ThemeToggle />
-        <ThemedComponent />
-        <ThemedComponent />
-      </div>
+      <UserProvider>
+        <div>
+          <h1>複数Context デモ</h1>
+          <ThemeToggle />
+          <UserProfile />
+          <ThemedComponent />
+        </div>
+      </UserProvider>
     </ThemeProvider>
   );
 }
