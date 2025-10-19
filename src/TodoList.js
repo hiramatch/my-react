@@ -24,6 +24,17 @@ export default function TodoList() {
     setTodos(todos.filter(todo => todo.id !== id));
   };
 
+  // ToDoの完了状態を切り替え
+  const toggleComplete = (id) => {
+    setTodos(todos.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, completed: !todo.completed };
+      } else {
+        return todo;
+      }
+    }));
+  };
+
   // 絞り込み処理
   const filteredTodos = todos.filter((todo) => {
     return filter === 'all' || filter === 'completed' && todo.completed || filter === 'active' && !todo.completed
@@ -72,7 +83,14 @@ export default function TodoList() {
           sortedTodos.map((todo) =>{
             return (
               <li key={todo.id}>
-                {todo.text}
+                <input
+                  type="checkbox"
+                  checked={todo.completed}
+                  onChange={() => toggleComplete(todo.id)}
+                />
+                <span style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
+                  {todo.text}
+                </span>
                 <button onClick={() => deleteTodo(todo.id)}>削除</button>
               </li>
             )
