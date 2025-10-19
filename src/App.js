@@ -1,12 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
-import RefDemo from './RefDemo';
+import MemoDemo from './MemoDemo';
 
 
 function App() {
   return (
     <div>
-      <RefDemo />
+      <MemoDemo />
     </div>
   );
 }
