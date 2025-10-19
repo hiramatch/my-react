@@ -1,16 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function TodoList() {
-  const [todos, setTodos] = useState([
-    { id: 1, text: 'Reactを学ぶ', completed: false },
-    { id: 2, text: 'コンポーネントを作る', completed: false },
-    { id: 3, text: 'useStateを理解する', completed: true },
-    { id: 4, text: 'リストの絞り込みを実装', completed: false },
-    { id: 5, text: 'ソート機能を追加', completed: true }
-  ]);
+  // localStorageから初期データを読み込み
+  const [todos, setTodos] = useState(() => {
+    const items = localStorage.getItem('todos');
+    if (items === null) {
+      return [];
+    } else {
+      return JSON.parse(items);
+    }
+  });
+
   const [filter, setFilter] = useState('all');
   const [sortBy, setSortBy] = useState('none');
   const [newTodoText, setNewTodoText] = useState('');
+
+  // todosが変更されたらlocalStorageに保存
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
 
   // ToDoを追加
   const addTodo = () => {
