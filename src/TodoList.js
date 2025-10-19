@@ -10,6 +10,19 @@ export default function TodoList() {
   ]);
   const [filter, setFilter] = useState('all');
   const [sortBy, setSortBy] = useState('none');
+  const [newTodoText, setNewTodoText] = useState('');
+
+  // ToDoを追加
+  const addTodo = () => {
+    const newId = todos.length === 0 ? 1 : Math.max(...todos.map(t => t.id)) + 1;
+    setTodos([...todos, { id: newId, text: newTodoText, completed: false }]);
+    setNewTodoText('');
+  };
+
+  // ToDoを削除
+  const deleteTodo = (id) => {
+    setTodos(todos.filter(todo => todo.id !== id));
+  };
 
   // 絞り込み処理
   const filteredTodos = todos.filter((todo) => {
@@ -27,6 +40,17 @@ export default function TodoList() {
   return (
     <div>
       <h2>ToDoリスト</h2>
+
+      {/* 新しいToDoを追加 */}
+      <div>
+        <input
+          type="text"
+          value={newTodoText}
+          onChange={(e) => setNewTodoText(e.target.value)}
+          placeholder="新しいToDoを入力"
+        />
+        <button onClick={addTodo} disabled={newTodoText.trim() === ''}>追加</button>
+      </div>
 
       {/* フィルターボタン */}
       <div>
@@ -46,7 +70,12 @@ export default function TodoList() {
       <ul>
         {
           sortedTodos.map((todo) =>{
-            return <li key={todo.id}>{todo.text}</li>
+            return (
+              <li key={todo.id}>
+                {todo.text}
+                <button onClick={() => deleteTodo(todo.id)}>削除</button>
+              </li>
+            )
           })
         }
       </ul>
